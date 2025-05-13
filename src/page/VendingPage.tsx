@@ -49,7 +49,7 @@ const VendingPage: React.FC<Props> = ({items, onGoToSetup}) => {
       if (timeoutRef.current === null) {
         // 20초 타임아웃 설정
         timeoutRef.current = window.setTimeout(() => {
-          alert('현금이 투입되었습니다. 잔돈이 반환됩니다.');
+          alert('장시간 동작 하지 않아 잔돈이 반환 됩니다.');
           setCash(0);
         }, 20000); // 20초 타이머
       }
@@ -74,7 +74,7 @@ const VendingPage: React.FC<Props> = ({items, onGoToSetup}) => {
 
     // 20초 타임아웃 설정
     timeoutRef.current = window.setTimeout(() => {
-      alert('시간이 만료 되었습니다. 카드 반환 후 다시 투입해주세요.');
+      alert('장시간 동작 하지 않아 카드 결제가 중단 됩니다 카드 반환 후 다시 투입 해 주세요.');
       setCard(false);
     }, 20000); // 20초 타이머
   };
