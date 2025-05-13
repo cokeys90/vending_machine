@@ -40,3 +40,69 @@
 .read-the-docs {
   color: #888;
 }
+
+/* work */
+/* 자판기 화면과 동일하게 5x4 배열로 설정 */
+.vending-machine {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5개의 열 */
+  grid-template-rows: repeat(4, 1fr); /* 4개의 행 */
+  gap: 16px; /* 각 슬롯 간의 간격 */
+  padding: 16px;
+  border: 4px solid #333; /* 자판기 외부 테두리 추가 */
+  border-radius: 8px; /* 자판기 테두리 둥글게 처리 */
+  background-color: #f1f1f1; /* 배경 색상 */
+}
+
+.vending-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* 위, 아래로 공간 분배 */
+  border: 2px solid #ccc; /* 슬롯 간 구분을 위한 테두리 추가 */
+  padding: 8px; /* 불필요한 상하 여백을 줄임 */
+  border-radius: 6px;
+  background-color: #fff; /* 슬롯 배경 색상 */
+  height: auto; /* 아이템 높이를 자동으로 조정 */
+  max-height: 250px; /* 최대 높이를 설정하여 너무 커지지 않도록 제한 */
+  box-sizing: border-box; /* 패딩을 포함하여 높이와 너비가 정해지도록 */
+}
+
+.item-info {
+  margin-top: 6px; /* 이미지와 텍스트 사이의 간격 줄임 */
+  text-align: center;
+}
+
+.item-name {
+  font-weight: bold;
+  font-size: 14px; /* 텍스트 크기를 적당히 설정 */
+}
+
+.item-price {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px; /* 가격과 이름 사이 간격 */
+}
+
+.select-button {
+  margin-top: 6px; /* 버튼과 텍스트 사이의 간격 조정 */
+  padding: 6px 12px;
+  font-size: 14px;
+  width: 100%; /* 버튼이 슬롯을 꽉 채우도록 설정 */
+}
+
+.select-button.highlight {
+  background-color: #4caf50; /* 초록색 */
+  color: white;
+}
+.select-button.highlight-buy { /* 구매 버튼, 파란색 */
+  background-color: #2196F3;
+  color: white;
+}
+
+.select-button.disabled {
+  background-color: #ddd;
+  color: #999;
+  cursor: not-allowed;
+}
+
