@@ -42,8 +42,8 @@ npm run dev
 
 <br>
 
--[x] diagram(Flow Chart) -> [flowChart.png](docs/flowChart.png)   
--[x] 경우의 수, 예외 케이스를 가능한 많이 표현해 봅니다.   
+- [x] diagram(Flow Chart) -> [flowChart.png](docs/flowChart.png)   
+- [x] 경우의 수, 예외 케이스를 가능한 많이 표현해 봅니다.   
   1. 대기 상태 : 관심을 끌기 위해 구매 가능한 음료의 선택 버튼 랜덤 하이라이트
   2. 현금 투입 1 : 100원, 500원, 1,000원, 5,000원, 10,000원권 투입
   3. 현급 투입 2 : 투입된 현금의 이하만 선택 가능
