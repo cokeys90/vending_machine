@@ -1,4 +1,6 @@
 @startuml
+'https://plantuml.com/activity-diagram-beta
+
 title 자판기 음료 Flowchart
 
 start
@@ -6,17 +8,15 @@ start
 :(data)\n재고가 없는 상품 확인;
 :(view)\n재고 있는 상품만 순차적 랜덤 점등;
 
-:결제 수단 선택;
+:(사용자)\n결제 수단 선택;
 
-if (현금) then
+if (현금) then (yes)
   :100/500/1000/5000/10000원 사용 가능;
   :현금 투입;
   :(view)\n투입된 금액 이하 & 재고 있는 상품만 모든 버튼 점등;
-  :상품 선택;
-elseif (카드) then
+elseif (카드) then (yes)
   :카드 투입;
   :(view)\n재고 있는 상품의 모든 버튼 점등;
-  :상품 선택;
 endif
 
 repeat
