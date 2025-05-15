@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
-import type {ItemStock} from '../App';
+import type {ItemVendingStock} from "../item/VendingItems.tsx";
 import '../App.css';
 
 interface Props {
-  items: ItemStock[];
+  items: ItemVendingStock[];
   onGoToSetup: () => void;
 }
 
@@ -13,7 +13,7 @@ const VendingPage: React.FC<Props> = ({items, onGoToSetup}) => {
   const [card, setCard] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
-  const [availableItems, setAvailableItems] = useState<ItemStock[]>(items); // 재고가 변경될 때마다 업데이트
+  const [availableItems, setAvailableItems] = useState<ItemVendingStock[]>(items); // 재고가 변경될 때마다 업데이트
 
   const timeoutRef = useRef<number | null>(null);
 
@@ -90,7 +90,7 @@ const VendingPage: React.FC<Props> = ({items, onGoToSetup}) => {
   };
 
   // 음료수 선택 후 결제 및 배출
-  const handleItemSelect = (item: ItemStock) => {
+  const handleItemSelect = (item: ItemVendingStock) => {
     if (item.stock <= 0) {
       alert('해당 음료수는 품절입니다.');
       return;
