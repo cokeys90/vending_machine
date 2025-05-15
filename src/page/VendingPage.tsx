@@ -9,11 +9,19 @@ interface Props {
 
 const VendingPage: React.FC<Props> = ({items, onGoToSetup}) => {
   const [highlightIndex, setHighlightIndex] = useState<number | null>(null);
+
+  // 결제 방법 1: 현금
   const [cash, setCash] = useState<number>(0);
+  // 결제 방법 2: 카드
   const [card, setCard] = useState<boolean>(false);
+
   const [showModal, setShowModal] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
   const [availableItems, setAvailableItems] = useState<ItemVendingStock[]>(items); // 재고가 변경될 때마다 업데이트
+
+  // 배출 하는 이미지 처리 하기 위해 사용
+  const [droppedItemImage, setDroppedItemImage] = useState<string | null>(null);
+
 
   const timeoutRef = useRef<number | null>(null);
 
@@ -23,8 +31,11 @@ const VendingPage: React.FC<Props> = ({items, onGoToSetup}) => {
       return;
     }
 
+    // 재고가 있는 음료수 중에서 랜덤으로 하이라이트
     const interval = setInterval(() => {
+      // 수량 확인, 0보다 큼
       const inStockItems = availableItems.filter(item => item.stock > 0);
+      // 랜덤으로 음료수 선택
       const randomItem = inStockItems[Math.floor(Math.random() * inStockItems.length)];
       setHighlightIndex(randomItem?.id ?? null);
     }, 1000);
@@ -121,6 +132,14 @@ const VendingPage: React.FC<Props> = ({items, onGoToSetup}) => {
 
       // 5초 후 메시지 제거
       setTimeout(() => setMessage(''), 5000);
+
+      // 배출 애니메이션 처리
+      setDroppedItemImage(item.imageUrl); // 드롭 애니메이션 시작
+
+      setTimeout(() => {
+        setDroppedItemImage(null); // 일정 시간 후 사라짐
+      }, 1500); // 애니메이션 길이보다 살짝 길게
+
     } else {
       alert('잔액이 부족합니다. 현금을 추가하거나 카드를 이용해 주세요.');
     }
@@ -209,6 +228,16 @@ const VendingPage: React.FC<Props> = ({items, onGoToSetup}) => {
               </div>
             </div>
         )}
+
+        {droppedItemImage && (
+            <img
+                src={droppedItemImage}
+                alt="배출 음료"
+                className="drop-animation"
+            />
+        )}
+
+
       </div>
   );
 };
@@ -218,6 +247,7 @@ const styles = {
     flexDirection: 'row' as const, // 가로로 배치
     alignItems: 'flex-end', // 세로 방향으로 밑단을 맞추기 위해 'flex-end' 사용
     padding: 20,
+    position: 'relative' as const, // ✅ 타입 오류 방지
   },
   vendingArea: {
     flex: 1,
